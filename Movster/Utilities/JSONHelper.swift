@@ -9,17 +9,14 @@
 import UIKit
 
 class JSONHelper: NSObject {
-    static func loadJson<T>(filename fileName: String) -> T? where T: Decodable {
-        if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
+    static func loadJson<T>(data: Data) -> T? where T: Decodable {
             do {
-                let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode(T.self, from: data)
                 return jsonData
             } catch {
                 print("error:\(error)")
             }
-        }
         return nil
     }
 }

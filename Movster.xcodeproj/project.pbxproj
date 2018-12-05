@@ -11,6 +11,9 @@
 		40FF6D9621B7224B00FC452D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40FF6D9521B7224B00FC452D /* Assets.xcassets */; };
 		40FF6DA221B7897700FC452D /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA121B7897700FC452D /* JSONHelper.swift */; };
 		40FF6DA421B78B9A00FC452D /* InTheaterNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA321B78B9A00FC452D /* InTheaterNowViewController.swift */; };
+		40FF6DA921B7A29100FC452D /* MovieDBNetworkSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA821B7A29100FC452D /* MovieDBNetworkSessions.swift */; };
+		40FF6DAC21B7C13800FC452D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DAB21B7C13800FC452D /* Movie.swift */; };
+		40FF6DAF21B86A4A00FC452D /* URLComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DAE21B86A4A00FC452D /* URLComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		40FF6D9A21B7224B00FC452D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40FF6DA121B7897700FC452D /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		40FF6DA321B78B9A00FC452D /* InTheaterNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheaterNowViewController.swift; sourceTree = "<group>"; };
+		40FF6DA821B7A29100FC452D /* MovieDBNetworkSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBNetworkSessions.swift; sourceTree = "<group>"; };
+		40FF6DAB21B7C13800FC452D /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		40FF6DAE21B86A4A00FC452D /* URLComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				40FF6D8E21B7224900FC452D /* AppDelegate.swift */,
+				40FF6DAA21B7C0E700FC452D /* Data Models */,
+				40FF6DAD21B86A1100FC452D /* Extensions */,
 				40FF6DA521B78BA100FC452D /* In Theater Now */,
 				40FF6DA021B77E9F00FC452D /* Utilities */,
 				40FF6D9521B7224B00FC452D /* Assets.xcassets */,
@@ -64,6 +72,8 @@
 		40FF6DA021B77E9F00FC452D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				40FF6DA721B7A1F500FC452D /* NetworkWrapper */,
+				40FF6DA621B78EF000FC452D /* JSONDecoder */,
 				40FF6DA121B7897700FC452D /* JSONHelper.swift */,
 			);
 			path = Utilities;
@@ -75,6 +85,37 @@
 				40FF6DA321B78B9A00FC452D /* InTheaterNowViewController.swift */,
 			);
 			path = "In Theater Now";
+			sourceTree = "<group>";
+		};
+		40FF6DA621B78EF000FC452D /* JSONDecoder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = JSONDecoder;
+			sourceTree = "<group>";
+		};
+		40FF6DA721B7A1F500FC452D /* NetworkWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				40FF6DA821B7A29100FC452D /* MovieDBNetworkSessions.swift */,
+			);
+			path = NetworkWrapper;
+			sourceTree = "<group>";
+		};
+		40FF6DAA21B7C0E700FC452D /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				40FF6DAB21B7C13800FC452D /* Movie.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		40FF6DAD21B86A1100FC452D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40FF6DAE21B86A4A00FC452D /* URLComponents.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +189,10 @@
 			files = (
 				40FF6DA421B78B9A00FC452D /* InTheaterNowViewController.swift in Sources */,
 				40FF6DA221B7897700FC452D /* JSONHelper.swift in Sources */,
+				40FF6DA921B7A29100FC452D /* MovieDBNetworkSessions.swift in Sources */,
+				40FF6DAF21B86A4A00FC452D /* URLComponents.swift in Sources */,
 				40FF6D8F21B7224900FC452D /* AppDelegate.swift in Sources */,
+				40FF6DAC21B7C13800FC452D /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
