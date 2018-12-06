@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.white
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
-        let startViewController = UINavigationController(rootViewController:InTheaterNowViewController())
+        let startViewController = UINavigationController(rootViewController: InTheaterNowViewController())
         window?.rootViewController = startViewController
         window?.makeKeyAndVisible()
         return true
