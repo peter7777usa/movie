@@ -9,6 +9,8 @@
 import UIKit
 
 class InTheaterNowViewController: UIViewController {
+    //let tableView: UITableView
+    
     
     // MARK: - Init methods
     
@@ -25,7 +27,9 @@ class InTheaterNowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        MovieDBNetworkSessions.getInTheatersNowMovieList()
+        MovieDBNetworkSessions.getInTheatersNowMovieList { (payload) in
+            
+        }
     }
     
     // MARK: - Setup methods

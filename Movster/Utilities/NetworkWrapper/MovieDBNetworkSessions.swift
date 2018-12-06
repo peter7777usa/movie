@@ -15,7 +15,7 @@ class MovieDBNetworkSessions: NSObject {
     
     //MARK: getInTheatersNowMovieList
     
-    static func getInTheatersNowMovieList() {
+    static func getInTheatersNowMovieList(completion: @escaping (( _ payload: MovieDBPayLoad) -> Void)) {
         let urlString = movieDBAPIURL + "movie/now_playing"
         let parameters = ["api_key": movieDBAPIKey, "language": "en-US"]
         let urlComponents = URLComponents.constructURLComponents(urlString: urlString, parameters: parameters)
@@ -24,11 +24,11 @@ class MovieDBNetworkSessions: NSObject {
         let request =  URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                print("error")
             }
             guard let data = data else { return }
             if let payload: MovieDBPayLoad =  JSONHelper.loadJson(data: data) {
-                
+                completion(payload)
             }
             }.resume()
     }
