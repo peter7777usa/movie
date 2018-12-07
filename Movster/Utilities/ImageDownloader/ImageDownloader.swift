@@ -10,15 +10,21 @@ import UIKit
 
 class ImageDownloader: NSObject {
     static let sharedInstance = ImageDownloader()
-
+    let imageCache = NSCache<NSString, UIImage>()
+    
     func downloadImage(imageURL: String, completion: @escaping (_ image: UIImage?) -> Void) {
         guard let url = URL(string: imageURL) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print("error")
-            }
-            guard let data = data else { return }
-            completion(UIImage(data: data))
-        }.resume()
+        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
+            completion(cachedImage)
+        } else {
+            URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+                if error != nil {
+                    print("error")
+                }
+                guard let data = data, let retrievedImage = UIImage(data: data) else { return }
+                self?.imageCache.setObject(retrievedImage, forKey: url.absoluteString as NSString)
+                completion(retrievedImage)
+                }.resume()
+        }
     }
 }
