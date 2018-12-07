@@ -20,12 +20,16 @@ class MovieTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.accessoryType = .disclosureIndicator
+        
+        /// setup poster imageview
         self.posterImageView.layer.borderWidth = 0
         self.posterImageView.layer.masksToBounds = false
         self.posterImageView.translatesAutoresizingMaskIntoConstraints = false
         self.posterImageView.clipsToBounds = true
         self.contentView.addSubview(self.posterImageView)
         
+        /// setup Movie title
         self.movieTitle.font = UIFont.systemFont(ofSize: 15)
         self.movieTitle.numberOfLines = 0
         self.movieTitle.lineBreakMode = .byWordWrapping
@@ -42,6 +46,7 @@ class MovieTableViewCell: UITableViewCell {
     // MARK: - Setup Methods
     
     private func setupConstraintForCell() {
+        
         /// Poster Image constraints
         let imageExpectedEdge = UIScreen.main.bounds.width / 4
         let posterImageViewTopConstraint = NSLayoutConstraint(item: self.posterImageView, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 15)
@@ -63,5 +68,10 @@ class MovieTableViewCell: UITableViewCell {
     
     func setupCellContent(movie: Movie) {
         self.movieTitle.text = movie.title
+        ImageDownloader.sharedInstance.downloadImage(imageURL: movieDBImageDownloadBaseURL + movie.posterPath, completion: { [weak self] (image) in
+            DispatchQueue.main.async { [weak self] in
+                self?.posterImageView.image = image
+            }
+        })
     }
 }

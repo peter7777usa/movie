@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40127C6E21BA59650050192C /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40127C6D21BA59650050192C /* ImageDownloader.swift */; };
+		40127C7021BA63090050192C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40127C6F21BA63090050192C /* Assets.xcassets */; };
 		40FF6D8F21B7224900FC452D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6D8E21B7224900FC452D /* AppDelegate.swift */; };
-		40FF6D9621B7224B00FC452D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40FF6D9521B7224B00FC452D /* Assets.xcassets */; };
 		40FF6DA221B7897700FC452D /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA121B7897700FC452D /* JSONHelper.swift */; };
 		40FF6DA421B78B9A00FC452D /* InTheaterNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA321B78B9A00FC452D /* InTheaterNowViewController.swift */; };
 		40FF6DA921B7A29100FC452D /* MovieDBNetworkSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA821B7A29100FC452D /* MovieDBNetworkSessions.swift */; };
@@ -19,9 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		40127C6D21BA59650050192C /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		40127C6F21BA63090050192C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40FF6D8B21B7224900FC452D /* Movster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FF6D8E21B7224900FC452D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		40FF6D9521B7224B00FC452D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40FF6D9A21B7224B00FC452D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40FF6DA121B7897700FC452D /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		40FF6DA321B78B9A00FC452D /* InTheaterNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheaterNowViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40127C6C21BA54570050192C /* ImageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				40127C6D21BA59650050192C /* ImageDownloader.swift */,
+			);
+			path = ImageDownloader;
+			sourceTree = "<group>";
+		};
 		40FF6D8221B7224900FC452D = {
 			isa = PBXGroup;
 			children = (
@@ -67,7 +77,7 @@
 				40FF6DAD21B86A1100FC452D /* Extensions */,
 				40FF6DA521B78BA100FC452D /* In Theater Now */,
 				40FF6DA021B77E9F00FC452D /* Utilities */,
-				40FF6D9521B7224B00FC452D /* Assets.xcassets */,
+				40127C6F21BA63090050192C /* Assets.xcassets */,
 				40FF6D9A21B7224B00FC452D /* Info.plist */,
 			);
 			path = Movster;
@@ -76,6 +86,7 @@
 		40FF6DA021B77E9F00FC452D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				40127C6C21BA54570050192C /* ImageDownloader */,
 				40FF6DA721B7A1F500FC452D /* NetworkWrapper */,
 				40FF6DA621B78EF000FC452D /* JSONDecoder */,
 				40FF6DA121B7897700FC452D /* JSONHelper.swift */,
@@ -206,7 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40FF6D9621B7224B00FC452D /* Assets.xcassets in Resources */,
+				40127C7021BA63090050192C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +235,7 @@
 				40FF6D8F21B7224900FC452D /* AppDelegate.swift in Sources */,
 				40FF6DAC21B7C13800FC452D /* Movie.swift in Sources */,
 				40FF6DB521B9B49D00FC452D /* MovieTableViewCell.swift in Sources */,
+				40127C6E21BA59650050192C /* ImageDownloader.swift in Sources */,
 				40FF6DB221B8EF3300FC452D /* InTheaterNowModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

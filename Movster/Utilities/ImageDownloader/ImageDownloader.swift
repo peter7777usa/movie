@@ -1,22 +1,28 @@
 //
-//  MovieDBNetworkSessions.swift
+//  ImageDownloader.swift
 //  Movster
 //
-//  Created by Fong, Peter on 12/4/18.
+//  Created by Fong, Peter on 12/6/18.
 //  Copyright © 2018 Fong, Peter. All rights reserved.
 //
 
 import UIKit
 
-let movieDBAPIKey = "2f692141148ec0d7dd35e8b6b409e26d"
-let movieDBAPIURL = "https://api.themoviedb.org/3/"
-let movieDBImageDownloadBaseURL = "https://image.tmdb.org/t/p/w154"
+class ImageDownloader: NSObject {
+    static let sharedInstance = ImageDownloader()
 
-class MovieDBNetworkSessions: NSObject {
+    func downloadImage(imageURL: String, completion: @escaping (_ image: UIImage?) -> Void) {
+        guard let url = URL(string: imageURL) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print("error")
+            }
+            guard let data = data else { return }
+            completion(UIImage(data: data))
+        }.resume()
+    }
     
-    //MARK: getInTheatersNowMovieList
-    
-    static func getInTheatersNowMovieList(completion: @escaping (( _ payload: MovieDBPayLoad) -> Void)) {
+    static func getInTheatersNowMovieList(completion: @escaping ((_ payload: MovieDBPayLoad) -> Void)) {
         let urlString = movieDBAPIURL + "movie/now_playing"
         let parameters = ["api_key": movieDBAPIKey, "language": "en-US"]
         let urlComponents = URLComponents.constructURLComponents(urlString: urlString, parameters: parameters)
@@ -34,3 +40,4 @@ class MovieDBNetworkSessions: NSObject {
             }.resume()
     }
 }
+    ///https://image.tmdb.org/t/p/w154/
