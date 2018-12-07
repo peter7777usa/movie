@@ -18,6 +18,7 @@ class InTheaterNowViewController: UIViewController {
         self.tableView = UITableView(frame: .zero)
         self.controllerModel = InTheaterNowModel()
         super.init(nibName: nil, bundle: nil)
+        self.controllerModel.delegate = self
     }
     
     convenience init(controllerModel: InTheaterNowModel) {
@@ -31,10 +32,14 @@ class InTheaterNowViewController: UIViewController {
     
     // MARK: - View controller lifecycle methods
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.controllerModel.getInTheaterMovies()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
     }
     
     // MARK: - Setup methods
@@ -48,16 +53,14 @@ class InTheaterNowViewController: UIViewController {
     
     private func setupTableView() {
         self.tableView.allowsSelection = false
-        self.tableView.separatorStyle = .none
-        
+        //self.tableView.separatorStyle = .none
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
+        self.tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: movieTableViewCellIdentifier)
         self.view.addSubview(self.tableView)
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         setupTableViewConstraints()
     }
     
@@ -74,11 +77,26 @@ class InTheaterNowViewController: UIViewController {
 
 extension InTheaterNowViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.controllerModel.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: movieTableViewCellIdentifier, for: indexPath) as? MovieTableViewCell
+        cell?.setupCellContent(movie: self.controllerModel.movies[indexPath.row])
+        return cell ?? MovieTableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
+
+// MARK: - InTheaterNowModelDelegate
+
+extension InTheaterNowViewController: InTheaterNowModelDelegate {
+    func updateMovieData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
 }
