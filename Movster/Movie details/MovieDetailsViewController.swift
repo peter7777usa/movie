@@ -28,7 +28,6 @@ class MovieDetailsViewController: UIViewController {
     convenience init(movie: Movie) {
         self.init()
         self.movie = movie
-       
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,6 +58,11 @@ class MovieDetailsViewController: UIViewController {
         self.movieTitleLabel.font = UIFont.systemFont(ofSize: 15)
         self.movieTitleLabel.numberOfLines = 0
         self.movieTitleLabel.lineBreakMode = .byWordWrapping
+        
+        /// setup Movie Genre Label
+        self.genereLabel.font = UIFont.systemFont(ofSize: 12)
+        self.genereLabel.numberOfLines = 0
+        self.genereLabel.lineBreakMode = .byWordWrapping
         
         /// setup Movie Description Label
         self.movieDescriptionLabel.font = UIFont.systemFont(ofSize: 17)
@@ -118,7 +122,13 @@ class MovieDetailsViewController: UIViewController {
     func setupControllerContent() {
         guard let movieModel = self.movie else { return }
         self.movieTitleLabel.text = movieModel.title
-        self.genereLabel.text = "GENERE: " + "test"
+        var genreTexts = ""
+        for genreID in movieModel.genereIDs {
+            guard let genreName = GenreMapping.sharedInstance.mapping[genreID] else { return }
+            genreTexts = genreTexts + genreName + "/"
+        }
+        genreTexts.removeLast()
+        self.genereLabel.text = genreTexts
         self.releaseDateLabel.text = "RELEASE DATE: " + movieModel.releaseData
         self.ratingLabel.text = "RATING: " + String(movieModel.voteAverage)
         self.movieDescriptionLabel.text = movieModel.overview

@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ///Setup Navigation Bar color app wide
         UINavigationBar.appearance().backgroundColor = UIColor.white
         
+        _ = GenreMapping.sharedInstance
         window = UIWindow.init(frame: UIScreen.main.bounds)
         let startViewController = UINavigationController(rootViewController: InTheaterNowViewController())
         window?.rootViewController = startViewController

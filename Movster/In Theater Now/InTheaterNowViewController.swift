@@ -39,7 +39,6 @@ class InTheaterNowViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.controllerModel.getMoviesGenres()
         setupUI()
     }
     

@@ -16,3 +16,17 @@ class Genre: Decodable {
     let id: Int
     let name: String
 }
+
+class GenreMapping: NSObject {
+    static let sharedInstance = GenreMapping()
+    var mapping = [Int: String]()
+    
+    override init() {
+        super.init()
+        MovieDBNetworkSessions.getMoviesGenres { [weak self] (payload) in
+            for genre in payload.genres {
+                self?.mapping[genre.id] = genre.name
+            }
+        }
+    }
+}
