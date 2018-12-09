@@ -40,7 +40,7 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
-        setupControllerContent()
+        setupControllerContents()
     }
     
     func setupUI() {
@@ -119,7 +119,7 @@ class MovieDetailsViewController: UIViewController {
         self.scrollView.addConstraints([movieDescriptionLabelTopConstraint, movieDescriptionLabelWidthConstraint, movieDescriptionLabelCenterXConstraint, movieDescriptionLabelBottomConstraint])
     }
     
-    func setupControllerContent() {
+    func setupControllerContents() {
         guard let movieModel = self.movie else { return }
         self.movieTitleLabel.text = movieModel.title
         var genreTexts = ""
