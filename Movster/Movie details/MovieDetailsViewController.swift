@@ -18,6 +18,7 @@ class MovieDetailsViewController: UIViewController {
     var ratingLabel = UILabel(frame: .zero)
     var movieDescriptionLabel = UILabel(frame: .zero)
     var movie: Movie?
+    var similarMoviesButton = UIButton(frame: .zero)
     
     // MARK: - Init methods
     
@@ -53,6 +54,7 @@ class MovieDetailsViewController: UIViewController {
         self.scrollView.addSubview(self.releaseDateLabel)
         self.scrollView.addSubview(self.ratingLabel)
         self.scrollView.addSubview(self.movieDescriptionLabel)
+        self.scrollView.addSubview(self.similarMoviesButton)
         
         /// setup Movie title label
         self.movieTitleLabel.font = UIFont.systemFont(ofSize: 15)
@@ -68,6 +70,10 @@ class MovieDetailsViewController: UIViewController {
         self.movieDescriptionLabel.font = UIFont.systemFont(ofSize: 17)
         self.movieDescriptionLabel.numberOfLines = 0
         self.movieDescriptionLabel.lineBreakMode = .byWordWrapping
+        
+        // setup Similar Movie button
+        self.similarMoviesButton.setTitle("Similar Movies", for: .normal)
+        self.similarMoviesButton.setTitleColor(UIColor.init(red: 0, green: 122/255, blue: 1, alpha: 1), for: .normal)
     }
     
     func setupConstraints() {
@@ -115,8 +121,14 @@ class MovieDetailsViewController: UIViewController {
         let movieDescriptionLabelTopConstraint = NSLayoutConstraint(item: self.movieDescriptionLabel, attribute: .top, relatedBy: .equal, toItem: self.ratingLabel, attribute: .bottom, multiplier: 1.0, constant: 45)
         let movieDescriptionLabelWidthConstraint = NSLayoutConstraint(item: self.movieDescriptionLabel, attribute: .width, relatedBy: .equal, toItem: self.scrollView, attribute: .width, multiplier: 1.0, constant: -30)
         let movieDescriptionLabelCenterXConstraint =  NSLayoutConstraint(item: self.movieDescriptionLabel, attribute: .centerX, relatedBy: .equal, toItem: self.ratingLabel, attribute: .centerX, multiplier: 1.0, constant: 0)
-        let movieDescriptionLabelBottomConstraint =  NSLayoutConstraint(item: self.scrollView, attribute: .bottom, relatedBy: .equal, toItem: self.movieDescriptionLabel, attribute: .bottom, multiplier: 1.0, constant: 75)
-        self.scrollView.addConstraints([movieDescriptionLabelTopConstraint, movieDescriptionLabelWidthConstraint, movieDescriptionLabelCenterXConstraint, movieDescriptionLabelBottomConstraint])
+        self.scrollView.addConstraints([movieDescriptionLabelTopConstraint, movieDescriptionLabelWidthConstraint, movieDescriptionLabelCenterXConstraint])
+        
+        /// Similar Movies Button Constraints
+        self.similarMoviesButton.translatesAutoresizingMaskIntoConstraints = false
+        let similarMoviesButtonTopConstraint = NSLayoutConstraint(item: self.similarMoviesButton, attribute: .top, relatedBy: .equal, toItem: self.movieDescriptionLabel, attribute: .bottom, multiplier: 1.0, constant: 30)
+        let similarMoviesButtonCenterXConstraint =  NSLayoutConstraint(item: self.similarMoviesButton, attribute: .centerX, relatedBy: .equal, toItem: self.scrollView, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let  similarMoviesButtonBottomConstraint =  NSLayoutConstraint(item: self.scrollView, attribute: .bottom, relatedBy: .equal, toItem: self.similarMoviesButton, attribute: .bottom, multiplier: 1.0, constant: 75)
+        self.scrollView.addConstraints([similarMoviesButtonTopConstraint, similarMoviesButtonCenterXConstraint, similarMoviesButtonBottomConstraint])
     }
     
     func setupControllerContents() {
