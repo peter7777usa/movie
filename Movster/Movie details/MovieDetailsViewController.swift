@@ -55,10 +55,15 @@ class MovieDetailsViewController: UIViewController {
         self.scrollView.addSubview(self.ratingLabel)
         self.scrollView.addSubview(self.movieDescriptionLabel)
         
-        /// setup Movie title
+        /// setup Movie title label
         self.movieTitleLabel.font = UIFont.systemFont(ofSize: 15)
         self.movieTitleLabel.numberOfLines = 0
         self.movieTitleLabel.lineBreakMode = .byWordWrapping
+        
+        /// setup Movie Description Label
+        self.movieDescriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        self.movieDescriptionLabel.numberOfLines = 0
+        self.movieDescriptionLabel.lineBreakMode = .byWordWrapping
     }
     
     func setupConstraints() {
@@ -102,6 +107,12 @@ class MovieDetailsViewController: UIViewController {
         self.scrollView.addConstraints([ratingLabelTopConstraint, ratingLabelCenterXConstraint])
         
         /// Movie Description Constraints
+        self.movieDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        let movieDescriptionLabelTopConstraint = NSLayoutConstraint(item: self.movieDescriptionLabel, attribute: .top, relatedBy: .equal, toItem: self.ratingLabel, attribute: .bottom, multiplier: 1.0, constant: 45)
+        let movieDescriptionLabelWidthConstraint = NSLayoutConstraint(item: self.movieDescriptionLabel, attribute: .width, relatedBy: .equal, toItem: self.scrollView, attribute: .width, multiplier: 1.0, constant: -30)
+        let movieDescriptionLabelCenterXConstraint =  NSLayoutConstraint(item: self.movieDescriptionLabel, attribute: .centerX, relatedBy: .equal, toItem: self.ratingLabel, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let movieDescriptionLabelBottomConstraint =  NSLayoutConstraint(item: self.scrollView, attribute: .bottom, relatedBy: .equal, toItem: self.movieDescriptionLabel, attribute: .bottom, multiplier: 1.0, constant: 75)
+        self.scrollView.addConstraints([movieDescriptionLabelTopConstraint, movieDescriptionLabelWidthConstraint, movieDescriptionLabelCenterXConstraint, movieDescriptionLabelBottomConstraint])
     }
     
     func setupControllerContent() {
