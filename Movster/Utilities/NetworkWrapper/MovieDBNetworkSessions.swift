@@ -10,7 +10,7 @@ import UIKit
 
 let movieDBAPIKey = "2f692141148ec0d7dd35e8b6b409e26d"
 let movieDBAPIURL = "https://api.themoviedb.org/3/"
-let movieDBImageDownloadBaseURL = "https://image.tmdb.org/t/p/w342"
+let movieDBImageDownloadBaseURL = "https://image.tmdb.org/t/p/w185"
 
 class MovieDBNetworkSessions: NSObject {
     

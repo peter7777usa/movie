@@ -52,7 +52,7 @@ class InTheaterNowViewController: UIViewController {
     }
     
     private func setupTableView() {
-        self.tableView.allowsSelection = false
+       // self.tableView.allowsSelection = false
         //self.tableView.separatorStyle = .none
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -88,6 +88,10 @@ extension InTheaterNowViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(MovieDetailsViewController(movie: controllerModel.movies[indexPath.row]), animated: true)
     }
 }
 
