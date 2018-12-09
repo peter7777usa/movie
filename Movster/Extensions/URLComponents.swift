@@ -10,7 +10,6 @@ import Foundation
 
 extension URLComponents {
     static func constructURLComponents(urlString: String, parameters: [String: String]) -> URLComponents? {
-        let urlString = movieDBAPIURL + "movie/now_playing"
         var queryItems = [URLQueryItem]()
         for (key, value) in parameters {
             queryItems.append(URLQueryItem(name: key, value: value))

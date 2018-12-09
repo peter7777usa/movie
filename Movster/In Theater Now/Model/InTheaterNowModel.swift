@@ -15,6 +15,7 @@ protocol InTheaterNowModelDelegate: AnyObject {
 class InTheaterNowModel: NSObject {
     weak var delegate: InTheaterNowModelDelegate?
     var movies = [Movie]()
+    var genreMapping = [String: String]()
     
     func getInTheaterMovies() {
         MovieDBNetworkSessions.getInTheatersNowMovieList { (payload) in
@@ -22,6 +23,12 @@ class InTheaterNowModel: NSObject {
                 self.movies = payload.results
                 self.delegate?.updateMovieData()
             }
+        }
+    }
+    
+    func getMoviesGenres() {
+        MovieDBNetworkSessions.getMoviesGenres { (payload) in
+            
         }
     }
 }
