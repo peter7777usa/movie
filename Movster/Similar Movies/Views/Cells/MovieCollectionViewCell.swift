@@ -33,6 +33,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         ///Use MovieDetailsController View as content view
         detailController = MovieDetailsViewController(movie: movie, embeddedInCell: true)
+        detailController.scrollView.isUserInteractionEnabled = false
+        self.contentView.addGestureRecognizer(detailController.scrollView.panGestureRecognizer)
         self.contentView.addSubview(detailController.view)
         
         ///Setup constraint to anchor the cell with movie detail content
