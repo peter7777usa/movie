@@ -68,7 +68,7 @@ class SimilarMoviesViewController: UIViewController {
     
     private func setupCollectionView() {
         self.collectionView.contentInsetAdjustmentBehavior = .never
-        self.collectionView.decelerationRate =  UIScrollView.DecelerationRate.normal
+        self.collectionView.decelerationRate =  UIScrollView.DecelerationRate.fast
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.backgroundColor = UIColor.white
         self.collectionView.delegate = self
@@ -87,11 +87,28 @@ class SimilarMoviesViewController: UIViewController {
         let collectionViewBottomConstraint = NSLayoutConstraint(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: self.collectionView, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.view.addConstraints([collectionViewTopConstraint,  collectionViewLeftConstraint, collectionViewRightConstraint, collectionViewBottomConstraint])
     }
+    
+    // MARK: - Private Methods
+    
+    /// Use to snap cell position to the closest position of a cell so the
+    /// deceleration to full stop of the collection view wont end up in between
+    /// cell
+    ///
+    /// - Parameters:
+    ///   - targetContentOffsetX: the original position the collection intended to end up
+    /// - Returns: The after calculation closet cell position we want it to end up
+    private func nextClosestCellOffsetX(targetContentOffsetX: CGFloat) -> CGFloat {
+        var convertedOffset = CGFloat(Int(targetContentOffsetX / SimilarMoviesViewController.collectionItemSize.width)) *  SimilarMoviesViewController.collectionItemSize.width
+        if targetContentOffsetX - convertedOffset > SimilarMoviesViewController.collectionItemSize.width / 2 {
+            convertedOffset = convertedOffset + SimilarMoviesViewController.collectionItemSize.width
+        }
+        return convertedOffset
+    }
 }
 
 // MARK: - CollectionView Datasource
 
-extension SimilarMoviesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension SimilarMoviesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionViewCellIdentifier, for: indexPath) as? MovieCollectionViewCell
         cell?.setupCell(movie: controllerModel.movies[indexPath.row])
@@ -107,11 +124,20 @@ extension SimilarMoviesViewController: UICollectionViewDataSource, UICollectionV
     }
 }
 
+extension SimilarMoviesViewController: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        targetContentOffset.pointee.x = nextClosestCellOffsetX(targetContentOffsetX:  targetContentOffset.pointee.x)
+    }
+}
+
 // MARK: - SimilarMoviesModel Delegate
 
 extension SimilarMoviesViewController: SimilarMoviesModelDelegate {
     func updateMoviesData() {
         DispatchQueue.main.async { [weak self] in
+            if self?.controllerModel.movies.count == 0 {
+                self?.navigationController?.popViewController(animated: true)
+            }
             self?.collectionView.reloadData()
         }
     }

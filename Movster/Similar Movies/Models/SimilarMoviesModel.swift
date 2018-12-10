@@ -20,10 +20,8 @@ class SimilarMoviesModel: NSObject {
     func getSimilarMovies() {
         guard let movieID = currentMovieTarget?.movieID else { return }
         MovieDBNetworkSessions.getSimilarMovies(movieID: String(movieID)) { [weak self] (payload) in
-            if payload.results.count > 0 {
-                self?.movies = payload.results
-                self?.delegate?.updateMoviesData()
-            }
+            self?.movies = payload.results
+            self?.delegate?.updateMoviesData()
         }
     }
 }
