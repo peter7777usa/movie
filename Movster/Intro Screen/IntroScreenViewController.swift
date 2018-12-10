@@ -36,7 +36,7 @@ class IntroScreenViewController: UIViewController {
         self.welcomeScreenLabel.numberOfLines = 0
         self.welcomeScreenLabel.text = "This is an intro screen, click dismiss below"
         
-        // setup Similar Movie button
+        // setup dismiss Button
         self.view.addSubview(self.dismissButton)
         self.dismissButton.setTitle("Dismiss", for: .normal)
         self.dismissButton.setTitleColor(UIColor.buttonBlue(), for: .normal)
@@ -66,6 +66,7 @@ class IntroScreenViewController: UIViewController {
     
     // MARK: - Button Action methods
     @objc private func dismissButtonClicked() {
+        UserDefaults.standard.set(true, forKey: introShownDefault)
         self.dismiss(animated: true, completion: nil)
     }
 }
