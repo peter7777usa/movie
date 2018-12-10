@@ -14,6 +14,8 @@
 		40127C7821BDCE5E0050192C /* SimilarMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40127C7721BDCE5E0050192C /* SimilarMoviesViewController.swift */; };
 		40127C7C21BDEA980050192C /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40127C7B21BDEA980050192C /* MovieCollectionViewCell.swift */; };
 		40127C7F21BE132A0050192C /* SimilarMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40127C7E21BE132A0050192C /* SimilarMoviesModel.swift */; };
+		40127C8521BEFDEE0050192C /* IntroScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40127C8421BEFDEE0050192C /* IntroScreenViewController.swift */; };
+		40127C8721BF022F0050192C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40127C8621BF022F0050192C /* UIColor.swift */; };
 		40FF6D8F21B7224900FC452D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6D8E21B7224900FC452D /* AppDelegate.swift */; };
 		40FF6DA221B7897700FC452D /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA121B7897700FC452D /* JSONHelper.swift */; };
 		40FF6DA421B78B9A00FC452D /* InTheaterNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FF6DA321B78B9A00FC452D /* InTheaterNowViewController.swift */; };
@@ -32,6 +34,8 @@
 		40127C7721BDCE5E0050192C /* SimilarMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesViewController.swift; sourceTree = "<group>"; };
 		40127C7B21BDEA980050192C /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		40127C7E21BE132A0050192C /* SimilarMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesModel.swift; sourceTree = "<group>"; };
+		40127C8421BEFDEE0050192C /* IntroScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroScreenViewController.swift; sourceTree = "<group>"; };
+		40127C8621BF022F0050192C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		40FF6D8B21B7224900FC452D /* Movster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FF6D8E21B7224900FC452D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40FF6D9A21B7224B00FC452D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +109,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		40127C8321BEFDCE0050192C /* Intro Screen */ = {
+			isa = PBXGroup;
+			children = (
+				40127C8421BEFDEE0050192C /* IntroScreenViewController.swift */,
+			);
+			path = "Intro Screen";
+			sourceTree = "<group>";
+		};
 		40FF6D8221B7224900FC452D = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +142,7 @@
 				40FF6DA521B78BA100FC452D /* In Theater Now */,
 				40127C7121BBE9BD0050192C /* Movie details */,
 				40127C7621BDCDA30050192C /* Similar Movies */,
+				40127C8321BEFDCE0050192C /* Intro Screen */,
 				40FF6DA021B77E9F00FC452D /* Utilities */,
 				40127C6F21BA63090050192C /* Assets.xcassets */,
 				40FF6D9A21B7224B00FC452D /* Info.plist */,
@@ -186,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				40FF6DAE21B86A4A00FC452D /* URLComponents.swift */,
+				40127C8621BF022F0050192C /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,9 +302,11 @@
 				40127C7821BDCE5E0050192C /* SimilarMoviesViewController.swift in Sources */,
 				40FF6DA421B78B9A00FC452D /* InTheaterNowViewController.swift in Sources */,
 				40127C7F21BE132A0050192C /* SimilarMoviesModel.swift in Sources */,
+				40127C8721BF022F0050192C /* UIColor.swift in Sources */,
 				40FF6DA221B7897700FC452D /* JSONHelper.swift in Sources */,
 				40127C7521BD3EF10050192C /* Genre.swift in Sources */,
 				40FF6DA921B7A29100FC452D /* MovieDBNetworkSessions.swift in Sources */,
+				40127C8521BEFDEE0050192C /* IntroScreenViewController.swift in Sources */,
 				40FF6DAF21B86A4A00FC452D /* URLComponents.swift in Sources */,
 				40FF6D8F21B7224900FC452D /* AppDelegate.swift in Sources */,
 				40FF6DAC21B7C13800FC452D /* Movie.swift in Sources */,

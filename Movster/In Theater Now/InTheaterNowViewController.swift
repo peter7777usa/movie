@@ -35,6 +35,7 @@ class InTheaterNowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        self.present(IntroScreenViewController(), animated: true, completion: nil)
     }
     
     // MARK: - Setup methods
