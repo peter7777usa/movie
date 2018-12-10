@@ -53,10 +53,6 @@ class SimilarMoviesViewController: UIViewController {
         self.controllerModel.getSimilarMovies()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     // MARK: - Orientation Change Method
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -124,7 +120,13 @@ extension SimilarMoviesViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - CollectionView Delegate
+
 extension SimilarMoviesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(MovieDetailsViewController(movie: self.controllerModel.movies[indexPath.row]), animated: true)
+    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee.x = nextClosestCellOffsetX(targetContentOffsetX:  targetContentOffset.pointee.x)
     }
