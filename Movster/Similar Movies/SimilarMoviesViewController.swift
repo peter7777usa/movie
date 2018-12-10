@@ -35,11 +35,11 @@ class SimilarMoviesViewController: UIViewController {
         self.controllerModel.delegate = self
     }
     
-//    convenience init(controllerModel: ContactsControllerModel) {
-//        self.init()
-//        self.controllerModel = controllerModel
-//    }
-//
+    convenience init(movie: Movie?) {
+        self.init()
+        self.controllerModel.currentMovieTarget = movie
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

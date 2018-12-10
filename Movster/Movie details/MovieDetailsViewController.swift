@@ -18,6 +18,7 @@ class MovieDetailsViewController: UIViewController {
     var movieDescriptionLabel = UILabel(frame: .zero)
     var movie: Movie?
     var similarMoviesButton = UIButton(frame: .zero)
+    var isEmbeddedInCell = false
     
     // MARK: - Init methods
     
@@ -25,9 +26,10 @@ class MovieDetailsViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(movie: Movie) {
+    convenience init(movie: Movie, embeddedInCell: Bool = false) {
         self.init()
         self.movie = movie
+        self.isEmbeddedInCell = embeddedInCell
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +50,7 @@ class MovieDetailsViewController: UIViewController {
     func setupUI() {
         self.view.addSubview(self.scrollView)
         self.view.backgroundColor = UIColor.white
+        self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.addSubview(self.movieTitleLabel)
         self.scrollView.addSubview(self.posterImageView)
         self.scrollView.addSubview(self.movieTitleLabel)
@@ -66,20 +69,26 @@ class MovieDetailsViewController: UIViewController {
         self.genereLabel.font = UIFont.systemFont(ofSize: 12)
         self.genereLabel.numberOfLines = 0
         self.genereLabel.lineBreakMode = .byWordWrapping
+        self.genereLabel.textAlignment = .center
         
         /// setup Movie Description Label
         self.movieDescriptionLabel.font = UIFont.systemFont(ofSize: 17)
         self.movieDescriptionLabel.numberOfLines = 0
         self.movieDescriptionLabel.lineBreakMode = .byWordWrapping
         
-        // setup Similar Movie button
-        self.similarMoviesButton.setTitle("Similar Movies", for: .normal)
-        self.similarMoviesButton.setTitleColor(UIColor.init(red: 0, green: 122/255, blue: 1, alpha: 1), for: .normal)
-        self.similarMoviesButton.addTarget(self, action: #selector(similarMovieButtonClicked), for: .touchUpInside)
+        if self.isEmbeddedInCell {
+            self.similarMoviesButton.isHidden = true
+        } else {
+
+            // setup Similar Movie button
+            self.similarMoviesButton.setTitle("Similar Movies", for: .normal)
+            self.similarMoviesButton.setTitleColor(UIColor.init(red: 0, green: 122/255, blue: 1, alpha: 1), for: .normal)
+            self.similarMoviesButton.addTarget(self, action: #selector(similarMovieButtonClicked), for: .touchUpInside)
+        }
     }
     
     func setupConstraints() {
-        
+
         /// Scroll View Constriants
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
         guard let safeAreaHeight = UIApplication.shared.keyWindow?.safeAreaInsets.top else { return }
@@ -105,7 +114,8 @@ class MovieDetailsViewController: UIViewController {
         self.genereLabel.translatesAutoresizingMaskIntoConstraints = false
         let genereLabelTopConstraint = NSLayoutConstraint(item: self.genereLabel, attribute: .top, relatedBy: .equal, toItem: self.movieTitleLabel, attribute: .bottom, multiplier: 1.0, constant: 15)
         let genereLabelCenterXConstraint =  NSLayoutConstraint(item: self.genereLabel, attribute: .centerX, relatedBy: .equal, toItem: self.scrollView, attribute: .centerX, multiplier: 1.0, constant: 0)
-        self.scrollView.addConstraints([genereLabelTopConstraint, genereLabelCenterXConstraint])
+        let genereLabelLabelWidthConstraint = NSLayoutConstraint(item: self.genereLabel, attribute: .width, relatedBy: .equal, toItem: self.scrollView, attribute: .width, multiplier: 1.0, constant: -30)
+        self.scrollView.addConstraints([genereLabelTopConstraint, genereLabelCenterXConstraint, genereLabelLabelWidthConstraint])
         
         /// Release Label Constraints
         self.releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -157,6 +167,6 @@ class MovieDetailsViewController: UIViewController {
     
     // MARK: - Button Action methods
     @objc func similarMovieButtonClicked() {
-        self.navigationController?.pushViewController(SimilarMoviesViewController(), animated: true)
+        self.navigationController?.pushViewController(SimilarMoviesViewController(movie: self.movie), animated: true)
     }
 }

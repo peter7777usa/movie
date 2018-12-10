@@ -32,7 +32,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.borderColor = UIColor.lightGray.cgColor
         
         ///Use MovieDetailsController View as content view
-        detailController = MovieDetailsViewController(movie: movie)
+        detailController = MovieDetailsViewController(movie: movie, embeddedInCell: true)
         self.contentView.addSubview(detailController.view)
         
         ///Setup constraint to anchor the cell with movie detail content

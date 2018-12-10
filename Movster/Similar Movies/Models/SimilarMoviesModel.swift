@@ -13,11 +13,13 @@ protocol SimilarMoviesModelDelegate: AnyObject {
 }
 
 class SimilarMoviesModel: NSObject {
+    var currentMovieTarget: Movie?
     weak var delegate: SimilarMoviesModelDelegate?
     var movies = [Movie]()
     
     func getSimilarMovies() {
-        MovieDBNetworkSessions.getSimilarMovies(movieID: "335983") { [weak self] (payload) in
+        guard let movieID = currentMovieTarget?.movieID else { return }
+        MovieDBNetworkSessions.getSimilarMovies(movieID: String(movieID)) { [weak self] (payload) in
             if payload.results.count > 0 {
                 self?.movies = payload.results
                 self?.delegate?.updateMoviesData()
