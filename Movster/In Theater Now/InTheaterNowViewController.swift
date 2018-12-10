@@ -21,11 +21,6 @@ class InTheaterNowViewController: UIViewController {
         self.controllerModel.delegate = self
     }
     
-    convenience init(controllerModel: InTheaterNowModel) {
-        self.init()
-        self.controllerModel = controllerModel
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

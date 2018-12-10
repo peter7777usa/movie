@@ -23,7 +23,7 @@ class SimilarMoviesViewController: UIViewController {
 
     // MARK: - Init methods
     
-    init() {
+    private init() {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal
         collectionViewLayout.estimatedItemSize = SimilarMoviesViewController.collectionItemSize

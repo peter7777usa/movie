@@ -47,7 +47,7 @@ class MovieDetailsViewController: UIViewController {
     
     // MARK: - Setup methods
     
-    func setupUI() {
+    private func setupUI() {
         self.view.addSubview(self.scrollView)
         self.view.backgroundColor = UIColor.white
         self.scrollView.showsVerticalScrollIndicator = false
@@ -87,7 +87,7 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
 
         /// Scroll View Constriants
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +144,7 @@ class MovieDetailsViewController: UIViewController {
         self.scrollView.addConstraints([similarMoviesButtonTopConstraint, similarMoviesButtonCenterXConstraint, similarMoviesButtonBottomConstraint])
     }
     
-    func setupControllerContents() {
+    private func setupControllerContents() {
         guard let movieModel = self.movie else { return }
         self.movieTitleLabel.text = movieModel.title
         var genreTexts = ""
