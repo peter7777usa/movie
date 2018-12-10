@@ -8,14 +8,24 @@
 
 import UIKit
 
+protocol IntroScreenControllerDelegate: AnyObject {
+    func introScreenDismissed()
+}
+
 class IntroScreenViewController: UIViewController {
     var welcomeScreenLabel = UILabel(frame: .zero)
     var dismissButton = UIButton(frame: .zero)
+    weak var delegate: IntroScreenControllerDelegate?
     
     // MARK: - Init methods
     
     init() {
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    convenience init(delegate: IntroScreenControllerDelegate) {
+        self.init()
+        self.delegate = delegate
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -67,6 +77,13 @@ class IntroScreenViewController: UIViewController {
     // MARK: - Button Action methods
     @objc private func dismissButtonClicked() {
         UserDefaults.standard.set(true, forKey: introShownDefault)
-        self.dismiss(animated: true, completion: nil)
+        let transition: CATransition = CATransition()
+        transition.duration = 1.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.dismiss(animated: false) { [weak self] in
+            self?.delegate?.introScreenDismissed()
+        }
     }
 }
