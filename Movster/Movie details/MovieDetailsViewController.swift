@@ -9,7 +9,6 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-
     var scrollView = UIScrollView(frame: .zero)
     var posterImageView = UIImageView()
     var movieTitleLabel = UILabel(frame: .zero)
@@ -44,6 +43,8 @@ class MovieDetailsViewController: UIViewController {
         setupControllerContents()
     }
     
+    // MARK: - Setup methods
+    
     func setupUI() {
         self.view.addSubview(self.scrollView)
         self.view.backgroundColor = UIColor.white
@@ -74,13 +75,15 @@ class MovieDetailsViewController: UIViewController {
         // setup Similar Movie button
         self.similarMoviesButton.setTitle("Similar Movies", for: .normal)
         self.similarMoviesButton.setTitleColor(UIColor.init(red: 0, green: 122/255, blue: 1, alpha: 1), for: .normal)
+        self.similarMoviesButton.addTarget(self, action: #selector(similarMovieButtonClicked), for: .touchUpInside)
     }
     
     func setupConstraints() {
         
         /// Scroll View Constriants
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
-        let scrollViewTopConstraint = NSLayoutConstraint(item: self.view, attribute: .top, relatedBy: .equal, toItem: self.scrollView, attribute: .top, multiplier: 1.0, constant: 0)
+        guard let safeAreaHeight = UIApplication.shared.keyWindow?.safeAreaInsets.top else { return }
+        let scrollViewTopConstraint = NSLayoutConstraint(item: self.scrollView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: safeAreaHeight + 44)
         let scrollViewBottomConstraint = NSLayoutConstraint(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: self.scrollView, attribute: .bottom, multiplier: 1.0, constant: 0)
         let scrollViewLeftConstraint = NSLayoutConstraint(item: self.view, attribute: .left, relatedBy: .equal, toItem: self.scrollView, attribute: .left, multiplier: 1.0, constant: 0)
         let scrollViewRightConstraint = NSLayoutConstraint(item: self.view, attribute: .right, relatedBy: .equal, toItem: self.scrollView, attribute: .right, multiplier: 1.0, constant: 0)
@@ -150,5 +153,10 @@ class MovieDetailsViewController: UIViewController {
                 self?.posterImageView.image = image
             }
         })
+    }
+    
+    // MARK: - Button Action methods
+    @objc func similarMovieButtonClicked() {
+        self.navigationController?.pushViewController(SimilarMoviesViewController(), animated: true)
     }
 }
