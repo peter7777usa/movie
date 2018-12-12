@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InTheaterNowViewController: UIViewController {
+class InTheaterNowViewController: UIViewController, IntroScreenControllerDelegate {
     let tableView: UITableView
     var controllerModel: InTheaterNowModel
     
@@ -32,13 +32,17 @@ class InTheaterNowViewController: UIViewController {
         self.controllerModel.getInTheaterMovies()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let introShown = UserDefaults.standard.bool(forKey: introShownDefault)
+        if !introShown {
+            self.present(IntroScreenViewController(delegate: self), animated: true, completion: nil)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        let introShown = UserDefaults.standard.bool(forKey: introShownDefault)
-        if !introShown {
-            self.present(IntroScreenViewController(), animated: true, completion: nil)
-        }
     }
     
     // MARK: - Setup methods
@@ -51,8 +55,6 @@ class InTheaterNowViewController: UIViewController {
     }
     
     private func setupTableView() {
-       // self.tableView.allowsSelection = false
-        //self.tableView.separatorStyle = .none
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: movieTableViewCellIdentifier)
@@ -69,6 +71,17 @@ class InTheaterNowViewController: UIViewController {
         let tableViewViewRightConstraint = NSLayoutConstraint(item: self.view, attribute: .right, relatedBy: .equal, toItem: self.tableView, attribute: .right, multiplier: 1.0, constant: 0)
         let tableViewViewBottomConstraint = NSLayoutConstraint(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: self.tableView, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.view.addConstraints([tableViewTopConstraint,  tableViewLeftConstraint, tableViewViewRightConstraint, tableViewViewBottomConstraint])
+    }
+    
+    // MARK: - IntroScreenController Delegate
+    
+    func introScreenDismissed() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.scale")
+        animation.values = [1.0, 1.2, 1.0]
+        animation.keyTimes = [0, 0.5, 1]
+        animation.duration = 1.5
+        animation.repeatCount = 1
+        view.layer.add(animation, forKey: nil)
     }
 }
 

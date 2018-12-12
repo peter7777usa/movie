@@ -8,4 +8,4 @@
 
 import Foundation
 
-let introShownDefault: String = "IntroScreenShown1"
+let introShownDefault: String = "IntroScreenShown10"
