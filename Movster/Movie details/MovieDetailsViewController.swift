@@ -82,7 +82,7 @@ class MovieDetailsViewController: UIViewController {
 
             // setup Similar Movie button
             self.similarMoviesButton.setTitle("Similar Movies", for: .normal)
-            self.similarMoviesButton.setTitleColor(UIColor.init(red: 0, green: 122/255, blue: 1, alpha: 1), for: .normal)
+            self.similarMoviesButton.setTitleColor(UIColor.buttonBlue(), for: .normal)
             self.similarMoviesButton.addTarget(self, action: #selector(similarMovieButtonClicked), for: .touchUpInside)
         }
     }
@@ -166,7 +166,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     // MARK: - Button Action methods
-    @objc func similarMovieButtonClicked() {
+    @objc private func similarMovieButtonClicked() {
         self.navigationController?.pushViewController(SimilarMoviesViewController(movie: self.movie), animated: true)
     }
 }
