@@ -14,7 +14,7 @@ let movieTableViewCellIdentifier = "MovieTableViewCell"
 class MovieTableViewCell: UITableViewCell {
     
     var posterImageView = UIImageView()
-    var movieTitle = UILabel(frame: .zero)
+    var movieTitleLabel = UILabel(frame: .zero)
     
     // MARK: - Init methods
     
@@ -30,11 +30,11 @@ class MovieTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.posterImageView)
         
         /// setup Movie title
-        self.movieTitle.font = UIFont.systemFont(ofSize: 15)
-        self.movieTitle.numberOfLines = 0
-        self.movieTitle.lineBreakMode = .byWordWrapping
-        self.movieTitle.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.addSubview(self.movieTitle)
+        self.movieTitleLabel.font = UIFont.systemFont(ofSize: 15)
+        self.movieTitleLabel.numberOfLines = 0
+        self.movieTitleLabel.lineBreakMode = .byWordWrapping
+        self.movieTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(self.movieTitleLabel)
     
         self.setupConstraintForCell()
     }
@@ -58,16 +58,16 @@ class MovieTableViewCell: UITableViewCell {
         self.contentView.addConstraints([posterImageViewTopConstraint, posterImageViewLeftConstraint, posterImageViewBottomConstraint, posterImageHeightConstraint, posterImageWidthConstraint])
         
         /// Movie Title constraints
-        let movieTitleLeftConstraint = NSLayoutConstraint(item: self.movieTitle, attribute: .left, relatedBy: .equal, toItem: self.posterImageView, attribute: .right, multiplier: 1.0, constant: 15)
-        let movieTitleRightConstraint = NSLayoutConstraint(item: self.contentView, attribute: .right, relatedBy: .equal, toItem: self.movieTitle, attribute: .right, multiplier: 1.0, constant: 15)
-        let movieTitleCenterConstraint = NSLayoutConstraint(item: self.movieTitle, attribute: .centerY, relatedBy: .equal, toItem: self.posterImageView, attribute: .centerY, multiplier: 1.0, constant: -15)
+        let movieTitleLeftConstraint = NSLayoutConstraint(item: self.movieTitleLabel, attribute: .left, relatedBy: .equal, toItem: self.posterImageView, attribute: .right, multiplier: 1.0, constant: 15)
+        let movieTitleRightConstraint = NSLayoutConstraint(item: self.contentView, attribute: .right, relatedBy: .equal, toItem: self.movieTitleLabel, attribute: .right, multiplier: 1.0, constant: 15)
+        let movieTitleCenterConstraint = NSLayoutConstraint(item: self.movieTitleLabel, attribute: .centerY, relatedBy: .equal, toItem: self.posterImageView, attribute: .centerY, multiplier: 1.0, constant: -15)
         self.contentView.addConstraints([movieTitleLeftConstraint, movieTitleRightConstraint, movieTitleCenterConstraint])
     }
     
     // MARK: - Public Methods
     
     func setupCellContent(movie: Movie) {
-        self.movieTitle.text = movie.title
+        self.movieTitleLabel.text = movie.title
         ImageDownloader.sharedInstance.downloadImage(imageURL: movieDBImageDownloadBaseURL + movie.posterPath, completion: { [weak self] (image) in
             DispatchQueue.main.async { [weak self] in
                 self?.posterImageView.image = image

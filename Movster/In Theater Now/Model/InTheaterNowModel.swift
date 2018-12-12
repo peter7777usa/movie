@@ -15,12 +15,12 @@ protocol InTheaterNowModelDelegate: AnyObject {
 class InTheaterNowModel: NSObject {
     weak var delegate: InTheaterNowModelDelegate?
     var movies = [Movie]()
-    
+
     func getInTheaterMovies() {
-        MovieDBNetworkSessions.getInTheatersNowMovieList { (payload) in
+        MovieDBNetworkSessions.getInTheatersNowMovieList { [weak self] (payload) in
             if payload.results.count > 0 {
-                self.movies = payload.results
-                self.delegate?.updateMovieData()
+                self?.movies = payload.results
+                self?.delegate?.updateMovieData()
             }
         }
     }
